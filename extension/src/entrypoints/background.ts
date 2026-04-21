@@ -54,6 +54,14 @@ export default defineBackground(() => {
   installPoller();
   cleanupLegacyNonDelivery().catch((e) => console.warn("[ParcelDeck] legacy cleanup failed", e));
 
+  // First-run onboarding: open the options page so the user reads the privacy note,
+  // configures the collection window, and learns where to set the UNI-PASS key.
+  browser.runtime.onInstalled.addListener((details) => {
+    if (details.reason === "install") {
+      browser.runtime.openOptionsPage().catch(() => { /* ignore */ });
+    }
+  });
+
   // default_popup is empty, so onClicked fires.
   const act = (browser as typeof browser & { browserAction?: typeof browser.action }).action
     ?? (browser as typeof browser & { browserAction?: typeof browser.action }).browserAction;

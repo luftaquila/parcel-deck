@@ -131,6 +131,17 @@ function wireReset() {
   });
 }
 
+// Footer with the privacy policy link.
+function sectionFooter(): string {
+  return `
+    <footer class="footer">
+      <a href="https://github.com/luftaquila/parcel-deck/blob/main/docs/PRIVACY.md" target="_blank" rel="noreferrer noopener">개인정보처리방침</a>
+      <span class="footer-sep">·</span>
+      <a href="https://github.com/luftaquila/parcel-deck" target="_blank" rel="noreferrer noopener">GitHub</a>
+    </footer>
+  `;
+}
+
 // Main render.
 render = async function () {
   const app = document.getElementById("app")!;
@@ -139,6 +150,7 @@ render = async function () {
     await sectionWindow(),
     await sectionCustoms(),
     sectionReset(),
+    sectionFooter(),
   ].join("");
   wireCollectToggle();
   wireWindow();
