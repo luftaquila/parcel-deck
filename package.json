@@ -1,0 +1,16 @@
+{
+  "name": "parceldeck",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Browser extension that automatically collects shopping order and delivery status",
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "dev": "pnpm --filter @parceldeck/extension dev",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3"
+  }
+}

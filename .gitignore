@@ -1,0 +1,12 @@
+node_modules/
+dist/
+shared/dist/
+.output/
+.wxt/
+*.tsbuildinfo
+.env
+.env.local
+data/
+*.sqlite
+*.sqlite-journal
+.DS_Store
