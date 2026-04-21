@@ -86,7 +86,8 @@ function extractTrackingFromName(name: string): { tracking: string | null; carri
 function shouldInclude(item: NaverItem): boolean {
   if (!item.serviceType) return false;
   if (NON_DELIVERY_SERVICE_TYPES.has(item.serviceType)) return false;
-  // "[parcel] tracking number:..." indicates a prepaid convenience-store shipment where the user is the sender, not a tracked purchase.
+  // Product names beginning with "[택배]" (Korean for "parcel") are prepaid
+  // convenience-store shipments where the user is the sender, not a purchase we track.
   if (/^\[택배\]/.test(item.product?.name ?? "")) return false;
   return true;
 }
