@@ -46,26 +46,42 @@ export default defineConfig({
       "webNavigation",
     ],
     host_permissions: [
-      "https://*.coupang.com/*",
-      "https://*.naver.com/*",
-      "https://*.aliexpress.com/*",
-      "https://*.aliexpress.us/*",
+      // Coupang: the two concrete origins actually hit by probe and keep-alive.
+      "https://www.coupang.com/*",
+      "https://mc.coupang.com/*",
+      // Naver: the Naver Pay order history, detail, assignments, and tracking all live under pay/orders/order/smartstore/www subdomains.
+      "https://pay.naver.com/*",
+      "https://order.pay.naver.com/*",
+      "https://orders.pay.naver.com/*",
+      "https://smartstore.naver.com/*",
+      "https://www.naver.com/*",
+      // AliExpress: MTop signing endpoint plus the order/tracking pages we fetch from.
+      "https://acs.aliexpress.com/*",
+      "https://www.aliexpress.com/*",
+      "https://ko.aliexpress.com/*",
+      "https://www.aliexpress.us/*",
+      // Korea Customs UNI-PASS public API (optional, only used when the user sets a CRKY).
       "https://unipass.customs.go.kr/*",
       "https://unipass.customs.go.kr:38010/*",
     ],
     web_accessible_resources: [
       {
+        // Injected into AliExpress order and tracking pages only.
         resources: ["injected/aliexpress-hook.js"],
         matches: [
-          "https://*.aliexpress.com/*",
-          "https://*.aliexpress.us/*",
-          "https://ko.aliexpress.com/*",
+          "https://www.aliexpress.com/p/order/*",
+          "https://ko.aliexpress.com/p/order/*",
+          "https://www.aliexpress.us/p/order/*",
+          "https://www.aliexpress.com/p/tracking/*",
+          "https://ko.aliexpress.com/p/tracking/*",
+          "https://www.aliexpress.us/p/tracking/*",
         ],
       },
       {
+        // Injected into the Naver Pay order history page only.
         resources: ["injected/naver-hook.js"],
         matches: [
-          "https://pay.naver.com/*",
+          "https://pay.naver.com/pc/history*",
         ],
       },
     ],
