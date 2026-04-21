@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "preserve",
+    "types": ["webextension-polyfill"],
+    "declaration": false
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "wxt.config.ts"]
+}
